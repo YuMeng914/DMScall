@@ -42,5 +42,5 @@ Deep mutational scanning (DMS) is a high-throughput screening method to comprehe
 **threshold**: Cut-off number of reads containing a specific single amino-acid mutation. <br>
 <br>
 **OUTPUT**:<br>
-**savepath**: 
+**savepath**: Heatmap visualizing enrichment scores of each mutation in .pdf format. <br>
 
