@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 from matplotlib.colors import LinearSegmentedColormap
 
-input_file = "MSQ0333 IFN diABZi dominant negative/1l_mutation_count_matrix.csv"
+input_file = "MSQ0333/1l_mutation_count_matrix.csv"
 ctrl = []
 with open(input_file, newline='') as csvfile:
     reader = csv.reader(csvfile)
@@ -17,7 +17,7 @@ with open(input_file, newline='') as csvfile:
         int_values = [int(float(val)) if val.strip() else 0 for val in values]
         ctrl.extend(int_values)
 
-input_file = "MSQ0333 IFN diABZi dominant negative/1h_mutation_count_matrix.csv"
+input_file = "MSQ0333/1h_mutation_count_matrix.csv"
 high = []
 with open(input_file, newline='') as csvfile:
     reader = csv.reader(csvfile)
@@ -31,15 +31,16 @@ ratio = []
 sc = sum(ctrl)
 sh = sum(high)
 
-with open("MSQ0333 IFN diABZi dominant negative/1l_counts.txt", "r") as f:
+with open("MSQ0333/1l_counts.txt", "r") as f:
     low_readcounts = [float(line.strip()) for line in f]
-with open("MSQ0333 IFN diABZi dominant negative/1h_counts.txt", "r") as f:
+with open("MSQ0333/1h_counts.txt", "r") as f:
     high_readcounts = [float(line.strip()) for line in f]
 norm_wt = math.log2((high_readcounts[0]/sum(high_readcounts)) / (low_readcounts[0]/sum(low_readcounts)))
 print(norm_wt)
 
+threshold = 20
 for i in range(len(ctrl)):
-    if ctrl[i] > 20 and high[i] > 20:
+    if ctrl[i] > threshold and high[i] > threshold:
         ratio.append(math.log2((high[i]/sh) / (ctrl[i]/sc)) - norm_wt)
     else:
         #ratio.append(0)
@@ -53,10 +54,6 @@ aa_list = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q',
 ratio = np.array(ratio).reshape((len(wt_sequence),20))
 
 dff = pd.DataFrame(ratio)
-#dff.to_csv('MSQ0319 IFN GOF/0319_ifn_gof_seg1_normWT_thre20_final.csv', index=False, header=False)
-
-#ratio = pd.DataFrame(ratio)
-#ratio = ratio.T
 
 wt_mask = np.zeros_like(ratio, dtype=bool)
 for i, wt_aa in enumerate(wt_sequence):
@@ -110,7 +107,7 @@ tick_lab = [1,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150]
 tick_pos = [i + 0.5 for i in tick_pos]
 hmp.set_xticks(tick_pos)
 hmp.set_xticklabels(tick_lab)
-savepath = 'MSQ0333 IFN diABZi dominant negative/DN_seg1_normWT_thre20_final.pdf'
+savepath = 'MSQ0333/seg1_normWT_thre20_final.pdf'
 plt.tick_params(axis='y', length=0)
 fon = fm.FontProperties(family="Arial")
 plt.yticks(rotation=0, va='center', ha='center', fontproperties=fon, fontweight='bold')
