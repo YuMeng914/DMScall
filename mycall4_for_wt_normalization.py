@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 from matplotlib.colors import LinearSegmentedColormap
 
-input_file = "MSQ0333/1l_mutation_count_matrix.csv"
+input_file_ctrl = "MSQ0333/1l_mutation_count_matrix.csv"
 ctrl = []
-with open(input_file, newline='') as csvfile:
+with open(input_file_ctrl, newline='') as csvfile:
     reader = csv.reader(csvfile)
     next(reader)
     for row in reader:
@@ -17,9 +17,9 @@ with open(input_file, newline='') as csvfile:
         int_values = [int(float(val)) if val.strip() else 0 for val in values]
         ctrl.extend(int_values)
 
-input_file = "MSQ0333/1h_mutation_count_matrix.csv"
+input_file_high = "MSQ0333/1h_mutation_count_matrix.csv"
 high = []
-with open(input_file, newline='') as csvfile:
+with open(input_file_high, newline='') as csvfile:
     reader = csv.reader(csvfile)
     next(reader)
     for row in reader:
@@ -32,7 +32,7 @@ sc = sum(ctrl)
 sh = sum(high)
 
 with open("MSQ0333/1l_counts.txt", "r") as f:
-    low_readcounts = [float(line.strip()) for line in f]
+    ctrl_readcounts = [float(line.strip()) for line in f]
 with open("MSQ0333/1h_counts.txt", "r") as f:
     high_readcounts = [float(line.strip()) for line in f]
 norm_wt = math.log2((high_readcounts[0]/sum(high_readcounts)) / (low_readcounts[0]/sum(low_readcounts)))
