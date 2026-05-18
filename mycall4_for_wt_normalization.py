@@ -53,8 +53,6 @@ aa_list = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q',
 
 ratio = np.array(ratio).reshape((len(wt_sequence),20))
 
-dff = pd.DataFrame(ratio)
-
 wt_mask = np.zeros_like(ratio, dtype=bool)
 for i, wt_aa in enumerate(wt_sequence):
     if wt_aa in aa_list:
