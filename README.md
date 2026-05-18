@@ -34,7 +34,13 @@ Deep mutational scanning (DMS) is a high-throughput screening method to comprehe
 **INPUT**:<br>
 **input_file_ctrl**: Variant calling matrix of ctrl group of cells, acquired in Step 3. <br>
 **input_file_high**: Variant calling matrix of selected group of cells, acquired in Step 3. <br>
-**low_readcounts**: **mutation_counts** file of ctrl group of cells, acquired in Step 2. <br>
+**ctrl_readcounts**: **mutation_counts** file of ctrl group of cells, acquired in Step 2. <br>
 **high_readcounts**: **mutation_counts** file of selected group of cells, acquired in Step 2. <br>
 **wt_sequence**: Wild-type peptide sequence of the segment in which mutagenesis is introduced, same as in Step 2 and Step 3. <br>
+<br>
+**PARAMETER**:<br>
+**threshold**: Cut-off number of reads containing a specific single amino-acid mutation. <br>
+<br>
+**OUTPUT**:<br>
+**savepath**: 
 
