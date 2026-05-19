@@ -1,8 +1,8 @@
 # DMScall
-Single mutation variant calling tool for DMS sequencing data
+Single amino-acid mutation variant calling tool for DMS sequencing data
 
 ### What is this pipeline used for?
-Deep mutational scanning (DMS) is a high-throughput screening method to comprehensively investigate the role of each amino acid residue in the protein. In this repository we showcase the analysis pipeline for the sequencing data acquired from DMS on STING (stimulator of interferon genes).
+Deep mutational scanning (DMS) is a high-throughput screening method to comprehensively investigate the role of each amino acid residue in the protein. In this repository we showcase the analysis pipeline for the sequencing data acquired from DMS on STING (stimulator of interferon genes). Cells transduced with STING DMS library are sorted via flow cytometry and a certain group of cells are collected, namely the **selected group**. The **ctrl group** is the entirety of cells before sorting. Genomic DNA of both the **selected group** and the **ctrl group** is extracted and serves as template of PCR, which is then sequenced by NGS. The sequencing data of the **selected group** and the **ctrl group** are analyzed through Step 1, 2 and 3 respectively, then the enrichment scores are calculated in Step 4 using results from both groups.
 
 ### Step 1: Search and translation (mycall1.py)
 **INPUT**: <br>
@@ -32,10 +32,10 @@ Deep mutational scanning (DMS) is a high-throughput screening method to comprehe
 
 ### Step 4: Enrichment analysis and visualization (mycall4_for_wt_normalization.py)
 **INPUT**:<br>
-**input_file_ctrl**: Variant calling matrix of ctrl group of cells, acquired in Step 3. <br>
-**input_file_high**: Variant calling matrix of selected group of cells, acquired in Step 3. <br>
-**ctrl_readcounts**: **mutation_counts** file of ctrl group of cells, acquired in Step 2. <br>
-**high_readcounts**: **mutation_counts** file of selected group of cells, acquired in Step 2. <br>
+**input_file_ctrl**: Variant calling matrix of **ctrl group** of cells, acquired in Step 3. <br>
+**input_file_high**: Variant calling matrix of **selected group** of cells, acquired in Step 3. <br>
+**ctrl_readcounts**: **mutation_counts** file of **ctrl group** of cells, acquired in Step 2. <br>
+**high_readcounts**: **mutation_counts** file of **selected group** of cells, acquired in Step 2. <br>
 **wt_sequence**: Wild-type peptide sequence of the segment in which mutagenesis is introduced, same as in Step 2 and Step 3. <br>
 <br>
 **PARAMETER**:<br>
